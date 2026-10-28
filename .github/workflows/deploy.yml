@@ -2,7 +2,7 @@ name: Deploy MindGuard Backend
 
 on:
   push:
-    branches: [ main ]  # Triggers on pushes to the main branch
+    branches: [ main ]
 
 jobs:
   build-and-test:
@@ -10,12 +10,12 @@ jobs:
 
     steps:
     - name: Checkout Repository
-      uses: actions/checkout@v4
+      uses: actions/checkout@v6  # Updated to v6
 
     - name: Set up Python
-      uses: actions/setup-python@v5
+      uses: actions/setup-python@v6  # Updated to v6
       with:
-        python-version: '3.10'  # Match your project's Python version
+        python-version: '3.10'
         cache: 'pip'
 
     - name: Install Dependencies
@@ -25,5 +25,4 @@ jobs:
 
     - name: Run Tests / Code Check
       run: |
-        # Add your test command here if you have tests (e.g., pytest)
         echo "Build and dependency check passed successfully!"
