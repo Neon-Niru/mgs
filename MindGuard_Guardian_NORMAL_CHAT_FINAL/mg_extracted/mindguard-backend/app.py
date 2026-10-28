@@ -41,13 +41,9 @@ app.register_blueprint(chat_bp, url_prefix="/api")
 app.register_blueprint(assessment_bp, url_prefix="/api")
 
 
-@app.route("/")
+@app.route('/')
 def home():
-    return {
-        "status": "running",
-        "project": "MindGuard AI"
-    }
-
+    return render_template('index.html')
 
 with app.app_context():
     db.create_all()
