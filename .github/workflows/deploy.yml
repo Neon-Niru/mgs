@@ -42,6 +42,10 @@ jobs:
           npm ci
           npm run build
 
+      - name: Copy index.html to 404.html for SPA Routing
+        run: |
+          cp MindGuard_Guardian_NORMAL_CHAT_FINAL/mg_extracted/mindguard-frontend/dist/index.html MindGuard_Guardian_NORMAL_CHAT_FINAL/mg_extracted/mindguard-frontend/dist/404.html
+
       - name: Setup Pages
         uses: actions/configure-pages@v5
 
