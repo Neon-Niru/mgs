@@ -1,4 +1,5 @@
-const BASE = import.meta.env.VITE_API_URL || "https://mindguard-demo-ln8z.onrender.com/api";
+const rawBase = import.meta.env.VITE_API_URL || "https://mindguard-demo-ln8z.onrender.com/api";
+const BASE = rawBase.endsWith("/api") ? rawBase : `${rawBase.replace(/\/+$/, "")}/api`;
 
 async function request(endpoint, options = {}) {
   const token = localStorage.getItem("token");
