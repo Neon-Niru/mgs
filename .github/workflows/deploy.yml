@@ -19,9 +19,9 @@ jobs:
           cache: 'pip'
 
       - name: Install Dependencies
-        working-directory: mindguard-backend
+        working-directory: MindGuard_Guardian_NORMAL_CHAT_FINAL/mg_extracted/mindguard-backend
         run: python -m pip install --upgrade pip && pip install -r requirements.txt
 
       - name: Run Diagnostics
-        working-directory: mindguard-backend
+        working-directory: MindGuard_Guardian_NORMAL_CHAT_FINAL/mg_extracted/mindguard-backend
         run: python -c "import app; print('App loaded successfully!')"
