@@ -4,7 +4,6 @@ on:
   push:
     branches: [ main ]
 
-# Allow workflow to deploy to GitHub Pages
 permissions:
   contents: read
   pages: write
@@ -15,7 +14,7 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  build-and-test:
+  build-and-deploy:
     runs-on: ubuntu-latest
 
     steps:
@@ -32,13 +31,24 @@ jobs:
         working-directory: MindGuard_Guardian_NORMAL_CHAT_FINAL/mg_extracted/mindguard-backend
         run: python -m pip install --upgrade pip && pip install -r requirements.txt
 
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Build Frontend
+        working-directory: MindGuard_Guardian_NORMAL_CHAT_FINAL/mg_extracted/mindguard-frontend
+        run: |
+          npm ci
+          npm run build
+
       - name: Setup Pages
         uses: actions/configure-pages@v5
 
-      - name: Upload Artifact (Frontend)
+      - name: Upload Artifact (Frontend Dist)
         uses: actions/upload-pages-artifact@v3
         with:
-          path: 'MindGuard_Guardian_NORMAL_CHAT_FINAL/mg_extracted/mindguard-frontend'
+          path: 'MindGuard_Guardian_NORMAL_CHAT_FINAL/mg_extracted/mindguard-frontend/dist'
 
       - name: Deploy to GitHub Pages
         id: deployment
