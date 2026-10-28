@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, render_template
 from flask_cors import CORS
 
 from config import Config
@@ -25,7 +25,16 @@ from routes.assessment import assessment_bp
 app = Flask(__name__)
 app.config.from_object(Config)
 
-CORS(app)
+# Enable CORS for GitHub Pages and local development
+CORS(app, resources={r"/api/*": {
+    "origins": [
+        "https://neon-niru.github.io",
+        "http://localhost:5173",
+        "http://localhost:3000"
+    ],
+    "methods": ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    "allow_headers": ["Content-Type", "Authorization"]
+}}, supports_credentials=True)
 
 db.init_app(app)
 bcrypt.init_app(app)
