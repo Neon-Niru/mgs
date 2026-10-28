@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask
 from flask_cors import CORS
 
 from config import Config
@@ -52,7 +52,7 @@ app.register_blueprint(assessment_bp, url_prefix="/api")
 
 @app.route('/')
 def home():
-    return render_template('index.html')
+    return {"status": "online", "message": "MindGuard Backend API is running successfully!"}, 200
 
 with app.app_context():
     db.create_all()
