@@ -1,4 +1,4 @@
-const BASE = import.meta.env.VITE_API_URL || "https://mindguard-demo-ln8z.onrender.com";
+const BASE = import.meta.env.VITE_API_URL || "https://mindguard-demo-ln8z.onrender.com/api";
 
 async function request(endpoint, options = {}) {
   const token = localStorage.getItem("token");
